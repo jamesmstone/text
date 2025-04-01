@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ConverterCard } from "@/components/converter-card"
-import { encoders, decoders } from "@/lib/converters"
+import {encoders, decoders, hashers} from "@/lib/converters"
 
 export default function TextConverter() {
   const [inputText, setInputText] = useState("")
@@ -66,6 +66,22 @@ export default function TextConverter() {
             <h2 className="text-xl font-semibold mb-4">Encoded Results</h2>
             <div className="grid gap-4">
               {encoders.map((converter) => (
+                <ConverterCard
+                  key={converter.name}
+                  title={converter.name}
+                  description={converter.description}
+                  converter={converter.converterFunction}
+                  inputText={inputText}
+                  processLinesSeparately={processLinesSeparately}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-semibold mb-4">Hash</h2>
+            <div className="grid gap-4">
+              {hashers.map((converter) => (
                 <ConverterCard
                   key={converter.name}
                   title={converter.name}

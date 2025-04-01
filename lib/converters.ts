@@ -1,3 +1,4 @@
+import crypto from "crypto";
 import type {Converter, ConvertedResult} from "@/types/converter"
 
 // Encoding functions
@@ -237,3 +238,62 @@ export const decoders: Converter[] = [
   },
 ]
 
+
+// Hasher list
+export const hashers: Converter[] = [
+  {
+    name: "MD5 Hash",
+    description: "Hashes the input text using the MD5 algorithm displaying in hex",
+    converterFunction: (text: string): ConvertedResult => {
+      try {
+        const hash = crypto.createHash('md5').update(text).digest('hex');
+        return {
+          success: true,
+          result: hash,
+        };
+      } catch (e) {
+        return {
+          success: false,
+          error: `Hashing error (MD5): ${e}`,
+        };
+      }
+    },
+  },
+  {
+    name: "SHA-1 Hash",
+    description: "Hashes the input text using the SHA-1 algorithm displaying in hex",
+    converterFunction: (text: string): ConvertedResult => {
+      try {
+
+        const hash = crypto.createHash('sha1').update(text).digest('hex');
+        return {
+          success: true,
+          result: hash,
+        };
+      } catch (e) {
+        return {
+          success: false,
+          error: `Hashing error (SHA-1): ${e}`,
+        };
+      }
+    },
+  },
+  {
+    name: "SHA-256 Hash",
+    description: "Hashes the input text using the SHA-256 algorithm displaying in hex",
+    converterFunction: (text: string): ConvertedResult => {
+      try {
+        const hash = crypto.createHash('sha256').update(text).digest('hex');
+        return {
+          success: true,
+          result: hash,
+        };
+      } catch (e) {
+        return {
+          success: false,
+          error: `Hashing error (SHA-256): ${e}`,
+        };
+      }
+    },
+  },
+];
