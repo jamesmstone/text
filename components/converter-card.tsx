@@ -38,8 +38,8 @@ export function ConverterCard({
 
       // Check if any line failed
       const failedLine = results.find((result) => !result.success)
-      if (failedLine && !failedLine.success) {
-        return failedLine
+      if (failedLine ) {
+        return failedLine as ConvertedResult
       }
 
       // All lines succeeded
