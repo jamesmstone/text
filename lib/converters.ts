@@ -1,4 +1,4 @@
-import type { Converter, ConvertedResult } from "@/types/converter"
+import type {Converter, ConvertedResult} from "@/types/converter"
 
 // Encoding functions
 export const encodeBase64 = (text: string): ConvertedResult => {
@@ -10,7 +10,7 @@ export const encodeBase64 = (text: string): ConvertedResult => {
   } catch (e) {
     return {
       success: false,
-      error: "Invalid input for Base64 encoding",
+      error: `Invalid input for Base64 encoding: ${e}`,
     }
   }
 }
@@ -24,7 +24,7 @@ export const encodeUrl = (text: string): ConvertedResult => {
   } catch (e) {
     return {
       success: false,
-      error: "Invalid input for URL encoding",
+      error: `Invalid input for URL encoding: ${e}`,
     }
   }
 }
@@ -32,8 +32,8 @@ export const encodeUrl = (text: string): ConvertedResult => {
 export const encodeHex = (text: string): ConvertedResult => {
   try {
     const result = Array.from(text)
-      .map((c) => c.charCodeAt(0).toString(16).padStart(2, "0"))
-      .join("")
+        .map((c) => c.charCodeAt(0).toString(16).padStart(2, "0"))
+        .join("")
     return {
       success: true,
       result,
@@ -41,7 +41,7 @@ export const encodeHex = (text: string): ConvertedResult => {
   } catch (e) {
     return {
       success: false,
-      error: "Invalid input for Hex encoding",
+      error: `Invalid input for Hex encoding: ${e}`,
     }
   }
 }
@@ -79,7 +79,7 @@ export const encodeBase32 = (text: string): ConvertedResult => {
   } catch (e) {
     return {
       success: false,
-      error: "Invalid input for Base32 encoding",
+      error: `Invalid input for Base32 encoding: ${e}`,
     }
   }
 }
@@ -94,7 +94,7 @@ export const decodeBase64 = (text: string): ConvertedResult => {
   } catch (e) {
     return {
       success: false,
-      error: "Invalid Base64 input",
+      error: `Invalid Base64 input: ${e}`,
     }
   }
 }
@@ -108,7 +108,7 @@ export const decodeUrl = (text: string): ConvertedResult => {
   } catch (e) {
     return {
       success: false,
-      error: "Invalid URL encoded input",
+      error: `Invalid URL encoded input: ${e}`,
     }
   }
 }
@@ -139,7 +139,7 @@ export const decodeHex = (text: string): ConvertedResult => {
   } catch (e) {
     return {
       success: false,
-      error: "Invalid Hex input",
+      error: `Invalid Hex input: ${e}`,
     }
   }
 }
@@ -184,7 +184,7 @@ export const decodeBase32 = (text: string): ConvertedResult => {
   } catch (e) {
     return {
       success: false,
-      error: "Invalid Base32 input",
+      error: `Invalid Base32 input: ${e}`,
     }
   }
 }
